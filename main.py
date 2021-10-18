@@ -27,6 +27,7 @@ represent several varieties of perch, as well as
 other freshwater genera and herring similar to those 
 in modern oceans. Other fish such as paddlefish, 
 garpike and stingray are also present.'''
+
 ]
 
 # Login credentials
@@ -35,7 +36,6 @@ LOGIN = {
     "Ann": "pass123",
     "Mike": "password123",
     "Liz": "pass123",
-    "Vojta": "heslo123"
 }
 
 # Separator
@@ -65,15 +65,15 @@ else:
 print(SEPARATOR, "Enter a number btw. 1 and 3.", sep="\n")
 input_text = int(input("To select: "))
 
-if input_text not in range(1,4):    # Zde jeste dodelat tak aby odpovidalo poctu indexu v listu, aktualne na pevno receno rozmezi, kdyz se prida dalsi text do listu nebude to fungovat spravne.
+if input_text not in range(len(TEXTS) + 1):   # selecting text is variable to how many objects is in a list named TEXT
     print(SEPARATOR, "Your selection is out of range. Qutting..", SEPARATOR, sep="\n")
     exit()
 else:
     print(SEPARATOR)
 
-# Clear specific text - chtelo by predelat do comprehension zapisu
+# Clear specific text
 list_words = TEXTS[input_text - 1].split()
-                                                #### POTREBA SE ZBAVIT V TEXTU 1 30N!
+
 
 without_numbers = []
 
@@ -84,17 +84,10 @@ for number in list_words:
 clear_text = []
 
 for word in without_numbers:
-    clear_word = word.strip(",.-_)(")   # ocisteni znaku
+    clear_word = word.strip(',.-“_)„("')   # ocisteni znaku
     clear_text.append(clear_word)
 
-without_empty_strings = []
-
-for string in clear_text:
-    if string != "":
-        without_empty_strings.append(string)
-
-
-
+without_empty_strings = [string for string in clear_text if string != ""]       # ocisteni mezer
 
 number_of_words = len(without_empty_strings)    # POCET SLOV V TEXTU
 ######################################
@@ -106,7 +99,6 @@ for letter in without_empty_strings:
         title_words.append(letter)
         if len(letter) < 2:
             title_words.remove(letter)
-
 
 number_of_title_words = len(title_words)    # POCET SLOV ZACINAJICICH NA VELKE PISMENO
 ######################################
@@ -123,23 +115,12 @@ for upper in without_empty_strings:
 number_of_upper_strings = len(upper_string)     # POCET SLOV KTERE JSOU PSANE VELKYMI PISMENY
 ######################################
 
-lower_string = []
-
-for lower in without_empty_strings:
-    if lower.islower():
-        lower_string.append(lower)
-
+lower_string = [lower for lower in without_empty_strings if lower.islower()]
 
 number_of_lower_strings = len(lower_string)     # POCET SLOV KTERE JSOU PSANE MALYMI PISMENY
 ######################################
 
-number_count = []
-
-for count in list_words:
-    if count.isdigit():
-        number_count.append(count)
-
-
+number_count = [count for count in list_words if count.isdigit()]
 
 count_of_numbers = len(number_count)    # POCET CISEL KTERE JSOU V TEXTU
 ######################################
@@ -148,7 +129,6 @@ list_sum_numbers = []
 
 for prevod in number_count:
     list_sum_numbers.append(int(prevod))
-
 
 sum_numbers = sum(list_sum_numbers)     # SOUCET VSECH CISEL V TEXTU
 ######################################
@@ -188,13 +168,11 @@ for i in count_letters:
 ## That means key | numbers of "*" as representation of value | value
 
 for k, v in sorted(numbers_sorted.items()):      # k = count, v = value
-    print(f"{k}   | {'*' * v } | {v} ")
-
-
-
-
+    print(f"{k:>3} | {'*' * v :<16} | {v :<0}")
 
 print(SEPARATOR)
+
+### END OF APP ###
 
 
 
