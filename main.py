@@ -44,7 +44,7 @@ LOGIN = {
 SEPARATOR = "-" * 50
 
 
-### START OF APP
+### START OF THE APP ###
 
 print(SEPARATOR, "                TEXT ANALYZER APP", SEPARATOR, sep="\n")
 
@@ -61,7 +61,7 @@ else:
     print("Username or password is incorrect..")
     exit()
 
-# Selecting text that we want to analyze
+# Entering which text we want to analyze
 print(SEPARATOR, "Enter a number btw. 1 and 3.", sep="\n")
 input_text = int(input("To select: "))
 
@@ -71,25 +71,24 @@ if input_text not in range(len(TEXTS) + 1):   # selecting text is variable to ho
 else:
     print(SEPARATOR)
 
-# Clear specific text
+# Clean up all text from characters and numbers that should not be included in the statistics
 list_words = TEXTS[input_text - 1].split()
-
 
 without_numbers = []
 
 for number in list_words:
-    clear_number = number.strip("0123456789")   # ocisteni cisel
+    clear_number = number.strip("0123456789")   # NUMBERS
     without_numbers.append(clear_number)
 
 clear_text = []
 
 for word in without_numbers:
-    clear_word = word.strip(',.-“_)„("')   # ocisteni znaku
+    clear_word = word.strip(',.-“_)„("')   # CHARACTERS
     clear_text.append(clear_word)
 
-without_empty_strings = [string for string in clear_text if string != ""]       # ocisteni mezer
+    without_empty_strings = [string for string in clear_text if string != ""]       # BLANK SPACES
 
-number_of_words = len(without_empty_strings)    # POCET SLOV V TEXTU
+number_of_words = len(without_empty_strings)    # NUMBER OF WORDS IN TEXT
 ######################################
 
 title_words = []
@@ -100,7 +99,7 @@ for letter in without_empty_strings:
         if len(letter) < 2:
             title_words.remove(letter)
 
-number_of_title_words = len(title_words)    # POCET SLOV ZACINAJICICH NA VELKE PISMENO
+number_of_title_words = len(title_words)    # NUMBER OF WORDS THAT BEGIN WITH A CAPITAL LETTER
 ######################################
 
 upper_string = []
@@ -112,17 +111,17 @@ for upper in without_empty_strings:
             upper_string.remove(upper)
 
 
-number_of_upper_strings = len(upper_string)     # POCET SLOV KTERE JSOU PSANE VELKYMI PISMENY
+number_of_upper_strings = len(upper_string)     # NUMBER OF CAPITAL WORDS
 ######################################
 
 lower_string = [lower for lower in without_empty_strings if lower.islower()]
 
-number_of_lower_strings = len(lower_string)     # POCET SLOV KTERE JSOU PSANE MALYMI PISMENY
+number_of_lower_strings = len(lower_string)     # NUMBER OF WORDS WRITTEN IN SMALL LETTERS
 ######################################
 
 number_count = [count for count in list_words if count.isdigit()]
 
-count_of_numbers = len(number_count)    # POCET CISEL KTERE JSOU V TEXTU
+count_of_numbers = len(number_count)    # NUMBER OF NUMBERS IN THE TEXT
 ######################################
 
 list_sum_numbers = []
@@ -130,7 +129,7 @@ list_sum_numbers = []
 for prevod in number_count:
     list_sum_numbers.append(int(prevod))
 
-sum_numbers = sum(list_sum_numbers)     # SOUCET VSECH CISEL V TEXTU
+sum_numbers = sum(list_sum_numbers)     # SUM OF ALL NUMBERS IN THE TEXT
 ######################################
 
 
