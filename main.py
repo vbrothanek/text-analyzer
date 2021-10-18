@@ -158,12 +158,44 @@ sum_numbers = sum(list_sum_numbers)     # SOUCET VSECH CISEL V TEXTU
 
 print(f"""
 There are {number_of_words} words in the selected text.
-There are {number_of_title_words} titlecase words. 
+There are {number_of_title_words} titlecase words.
 There are {number_of_upper_strings} uppercase words.
 There are {number_of_lower_strings} lowercase words.
 There are {count_of_numbers} numeric strings.
 The sum of all the numbers {sum_numbers}.
-
 """)
 print(SEPARATOR)
+
+## counting lenght of lettes in stringis, saving to dict keys vs values.
+count_letters = []
+
+for table in without_empty_strings:
+    lenght = 0
+
+    for char in table:
+        lenght += 1
+    count_letters.append(lenght)
+
+numbers_sorted = {}
+
+for i in count_letters:
+    if i in numbers_sorted:
+        continue
+    numbers_sorted[i] = count_letters.count(i)
+
+
+## Print result of counting as star "*"
+## That means key | numbers of "*" as representation of value | value
+
+for k, v in sorted(numbers_sorted.items()):      # k = count, v = value
+    print(f"{k}   | {'*' * v } | {v} ")
+
+
+
+
+
+print(SEPARATOR)
+
+
+
 
