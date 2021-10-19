@@ -145,7 +145,7 @@ The sum of all the numbers {sum_numbers}.
 """)
 print(SEPARATOR)
 
-## counting lenght of lettes in stringis, saving to dict keys vs values.
+## counting lenght of letters in strings, saving to dict keys vs values.
 count_letters = []
 
 for table in without_empty_strings:
